@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <div class="image">
+    <img [src]="product$()?.image" alt="{{ product$()?.title }}" />
+  </div>
+  
+  <div class="content">
+    <div class="header">
+      <h1>{{ product$()?.title}}</h1>
+      <p>{{ product$()?.description }}</p>
+    </div>
+
+    <div class="footer">
+      <span>{{ (product$()?.price || 0) * 5.5 | currency }}</span>
+      @if (isInCart()) {
+        <button mat-stroked-button (click)="removeFromCart()">
+          <mat-icon>remove_shopping_cart</mat-icon>
+          Remover
+        </button>
+      } @else {
+        <button mat-flat-button (click)="addToCart()">
+          <mat-icon>add_shopping_cart</mat-icon>
+          Adicionar
+        </button>
+      }
+    </div>
+  </div>
+</div>

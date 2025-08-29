@@ -1,0 +1,25 @@
+<div class="image">
+  <img loading="lazy" [src]="product.image" alt="{{ product.title }}" />
+</div>
+
+<div class="content">
+  <div class="header">
+    <a [routerLink]="['/product', product.id]">{{ product.title | ellipsis: 50 }}</a>
+    <p>{{ product.description | ellipsis }}</p>
+  </div>
+
+  <div class="footer">
+    <span>{{ product.price * 5.5 | currency }}</span>
+    @if (isInCart()) {
+      <button mat-stroked-button (click)="removeFromCart()">
+        <mat-icon>remove_shopping_cart</mat-icon>
+        Remover
+      </button>
+    } @else {
+      <button mat-flat-button (click)="addToCart()">
+        <mat-icon>add_shopping_cart</mat-icon>
+        Adicionar
+      </button>
+    }
+  </div>
+</div>

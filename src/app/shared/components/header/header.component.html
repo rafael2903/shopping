@@ -1,0 +1,45 @@
+<header>
+  <a class="shop-title" routerLink="/">Shop</a>
+
+  <form (ngSubmit)="search()">
+    <div class="input-wrapper">
+      <mat-icon>search</mat-icon>
+      <input placeholder="Buscar produtos" [(ngModel)]="query" name="query"/>
+    </div>
+  </form>
+
+  <nav>
+    <ul>
+      <li>
+        <a mat-button routerLink="/cart" routerLinkActive="active">
+          <mat-icon [matBadge]="cartProductsCount()" aria-hidden="false">shopping_cart</mat-icon>
+          Carrinho
+        </a>
+      </li>
+      @if (isUserLogged()) {
+        @if (isUserAdmin()) {
+          <li>
+            <a mat-button routerLink="/admin">
+              <mat-icon>admin_panel_settings</mat-icon>
+              Admin
+            </a>
+          </li>
+        }
+
+        <li>
+          <a mat-button (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Sair
+          </a>
+        </li>
+      } @else {
+      <li>
+        <a mat-flat-button routerLink="/login">
+          <mat-icon>person</mat-icon>
+          Entrar
+        </a>
+      </li>
+      }
+    </ul>
+  </nav>
+</header>
